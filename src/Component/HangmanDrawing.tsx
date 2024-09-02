@@ -1,22 +1,22 @@
 import React from "react";
 
 const Head = (
-  <div className="bg-white h-[60px] w-[60px] rounded-full absolute top-[50px] right-[-27px]" />
+  <div className="bg-white h-[12%] w-[20%] rounded-full absolute top-[10%] right-[-9.5%]" />
 );
 const Body = (
-  <div className="bg-white h-[100px] w-[7px] absolute top-[100px] right-0" />
+  <div className="bg-white h-[25%] w-[2%] absolute top-[20%] right-0" />
 );
 const Left_Hand = (
-  <div className="bg-white h-[65px] w-[5px] absolute top-[115px] right-[-20px] rotate-[-36deg]" />
+  <div className="bg-white h-[15%] w-[1.5%] absolute top-[25%] right-[-6%] rotate-[-36deg]" />
 );
 const Right_Hand = (
-  <div className="bg-white h-[65px] w-[5px] absolute top-[115px] right-[20px] rotate-[35deg]" />
+  <div className="bg-white h-[15%] w-[1.5%] absolute top-[25%] right-[6%] rotate-[35deg]" />
 );
 const Left_Leg = (
-  <div className="bg-white h-[65px] w-[5px] absolute top-[190px] right-[-20px] rotate-[-36deg]" />
+  <div className="bg-white h-[16%] w-[1.5%] absolute top-[42%] right-[-7%] rotate-[-36deg]" />
 );
 const Right_Leg = (
-  <div className="bg-white h-[65px] w-[5px] absolute top-[190px] right-[20px] rotate-[35deg]" />
+  <div className="bg-white h-[16%] w-[1.5%] absolute top-[42%] right-[7%] rotate-[35deg]" />
 );
 
 interface HangmanDrawingProps {
@@ -25,12 +25,12 @@ interface HangmanDrawingProps {
 const Body_Parts = [Head, Body, Left_Hand, Right_Hand, Left_Leg, Right_Leg];
 const HangmanDrawing = ({ inCorrectGuess }: HangmanDrawingProps) => {
   return (
-    <div className="relative">
+    <div className="relative h-[50vh] w-[30vw] max-w-[250px] max-h-[400px] mx-auto">
       {Body_Parts.slice(0, inCorrectGuess)}
-      <div className="h-[50px] w-[2px] bg-white absolute top-0 right-0" />
-      <div className="h-[7px] w-[250px] bg-white ml-[120px]" />
-      <div className="h-[400px] w-[7px] bg-white ml-[120px]" />
-      <div className="h-[7px] w-[250px] bg-white" />
+      <div className="h-[10.5%] w-[1%] bg-white absolute top-0 right-0" />
+      <div className="h-[2%] w-[75%] bg-white ml-[30%]" />
+      <div className="h-[80%] w-[2%] bg-white ml-[30%]" />
+      <div className="h-[1%] w-[60%] bg-white" />
     </div>
   );
 };

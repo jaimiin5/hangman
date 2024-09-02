@@ -3,15 +3,175 @@ import "./App.css";
 import HangmanDrawing from "./Component/HangmanDrawing";
 import HangmanWord from "./Component/HangmanWord";
 import Keyboard from "./Component/Keyboard";
-import words from "./Wordlist.json";
+import Modal from "./Component/Model";
 
 const wordCategories: Record<string, string[]> = {
-  Animals: ["dog", "elephant", "kangaroo"],
-  Fruits: ["apple", "banana", "cherry"],
-  Countries: ["Canada", "Germany", "Japan"],
-  Sports: ["soccer", "basketball", "tennis"],
-  Movies: ["Titanic", "Inception", "Avatar"],
-  Food: ["pizza", "burger", "sushi"],
+  Animals: [
+    "dog",
+    "cat",
+    "cow",
+    "bat",
+    "fox",
+    "ant",
+    "rat",
+    "owl",
+    "bee",
+    "pig",
+    "deer",
+    "duck",
+    "bear",
+    "lion",
+    "frog",
+    "crab",
+    "wolf",
+    "hare",
+    "snail",
+    "swan",
+  ],
+  Fruits: [
+    "apple",
+    "pear",
+    "plum",
+    "fig",
+    "kiwi",
+    "lime",
+    "grape",
+    "melon",
+    "date",
+    "mango",
+  ],
+  Countries: [
+    "india",
+    "china",
+    "italy",
+    "france",
+    "japan",
+    "brazil",
+    "egypt",
+    "spain",
+    "nepal",
+    "greece",
+  ],
+  Sports: [
+    "soccer",
+    "tennis",
+    "chess",
+    "golf",
+    "cricket",
+    "rugby",
+    "boxing",
+    "fencing",
+    "hockey",
+    "dance",
+  ],
+  Movies: [
+    "titanic",
+    "jaws",
+    "rocky",
+    "shrek",
+    "frozen",
+    "up",
+    "cars",
+    "bolt",
+    "elf",
+    "dumbo",
+  ],
+  Food: [
+    "rice",
+    "corn",
+    "fish",
+    "bread",
+    "beans",
+    "pasta",
+    "chips",
+    "soup",
+    "salad",
+    "fruit",
+  ],
+  Colors: [
+    "red",
+    "blue",
+    "green",
+    "pink",
+    "gray",
+    "teal",
+    "gold",
+    "cyan",
+    "lime",
+    "navy",
+  ],
+  Vehicles: [
+    "car",
+    "bus",
+    "bike",
+    "jeep",
+    "ship",
+    "boat",
+    "tram",
+    "van",
+    "taxi",
+    "train",
+  ],
+  Instruments: [
+    "guitar",
+    "flute",
+    "drum",
+    "harp",
+    "piano",
+    "trumpet",
+    "violin",
+    "cello",
+    "sax",
+    "banjo",
+  ],
+  Jobs: [
+    "nurse",
+    "chef",
+    "clerk",
+    "maid",
+    "pilot",
+    "actor",
+    "judge",
+    "guide",
+    "coach",
+    "guard",
+  ],
+  Weather: [
+    "rain",
+    "snow",
+    "wind",
+    "sun",
+    "hail",
+    "fog",
+    "storm",
+    "cloud",
+    "breeze",
+    "frost",
+  ],
+  Clothes: [
+    "hat",
+    "coat",
+    "sock",
+    "belt",
+    "jeans",
+    "scarf",
+    "dress",
+    "shirt",
+    "shorts",
+    "boots",
+  ],
+  School: [
+    "book",
+    "pen",
+    "desk",
+    "chalk",
+    "test",
+    "math",
+    "glue",
+    "bag",
+    "lunch",
+    "class",
+  ],
 };
 
 const getRandomCategory = (): string => {
@@ -19,22 +179,18 @@ const getRandomCategory = (): string => {
   return categories[Math.floor(Math.random() * categories.length)];
 };
 
-const getWordFromCategory = (): string => {
-  const category = getRandomCategory()
+const getWordFromCategory = (category: string): string => {
   const words = wordCategories[category];
   return words[Math.floor(Math.random() * words.length)];
 };
 
-const rendomAssWord = () => {
-  return words[Math.floor(Math.random() * words.length)]
-}
-
 function App() {
-  // const [category, setCategory] = useState<string>(getRandomCategory);
+  const [category, setCategory] = useState<string>(() => getRandomCategory());
+
   const [wordToGuess, setWordToGuess] = useState<string>(
-    rendomAssWord
+    getWordFromCategory(category)
   );
-  console.log('answer',wordToGuess)
+  console.log("answer", wordToGuess);
   //this will be the user input
   const [userGuess, setUserGuess] = useState<string[]>([]);
 
@@ -58,8 +214,10 @@ function App() {
   //physical keyboard logic
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const key = e.key;
-      if (!key.match(/^[a-z]$/)) return;
+      const key = e.key.toLocaleLowerCase();
+
+      console.log(key);
+      if (!key.match(/^[a-zA-Z]$/)) return;
 
       e.preventDefault();
       addGuessedLetter(key);
@@ -71,7 +229,13 @@ function App() {
     };
   }, [userGuess]);
 
+  useEffect(() => {
+    setWordToGuess(getWordFromCategory(category));
+    setUserGuess([]);
+  }, [category]);
+
   //this will generate new word/category when user press enter
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       const key = e.key;
@@ -81,8 +245,7 @@ function App() {
       setUserGuess([]);
 
       // Keep the same category but get a new word from it
-      setWordToGuess(rendomAssWord);
-
+      setCategory(getRandomCategory());
     };
     document.addEventListener("keypress", handler);
 
@@ -92,7 +255,10 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-8 justify-center items-center bg-black text-white h-screen w-full">
+    <div className="flex flex-col gap-12 justify-center items-center bg-black text-white h-screen w-screen">
+      <div className="flex justify-center items-center rounded-md text-white p-4 min-fit  h-[50px] border-2 border-white">
+        {category && category}
+      </div>
       {isLoser && "better luck next time"}
       {isWinner && "WINNER!!"}
       <HangmanDrawing inCorrectGuess={inCorrectGuess.length} />
@@ -111,6 +277,11 @@ function App() {
           disabled={isLoser || isWinner}
         />
       </div>
+      <Modal
+        isOpen={isWinner || isLoser }
+        message={isWinner ? "You Win!" : "You Lose!"}
+      />
+      <div className="text-[13px]">Press Enter for New Word</div>
     </div>
   );
 }
