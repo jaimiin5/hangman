@@ -4,6 +4,7 @@ import HangmanDrawing from "./Component/HangmanDrawing";
 import HangmanWord from "./Component/HangmanWord";
 import Keyboard from "./Component/Keyboard";
 import Modal from "./Component/Model";
+import Hint from "./Component/Hint";
 
 const wordCategories: Record<string, string[]> = {
   Animals: [
@@ -24,7 +25,6 @@ const wordCategories: Record<string, string[]> = {
     "frog",
     "crab",
     "wolf",
-    "hare",
     "snail",
     "swan",
   ],
@@ -190,10 +190,12 @@ function App() {
   const [wordToGuess, setWordToGuess] = useState<string>(
     getWordFromCategory(category)
   );
-  console.log("answer", wordToGuess);
-  //this will be the user input
   const [userGuess, setUserGuess] = useState<string[]>([]);
+  console.log("userguess", userGuess);
 
+  const correctGuess = userGuess.filter((letter) =>
+    wordToGuess.includes(letter)
+  );
   const inCorrectGuess = userGuess.filter((letter) => {
     return !wordToGuess.includes(letter);
   });
@@ -267,19 +269,24 @@ function App() {
         userGuess={userGuess}
         reveal={isLoser}
       />
+      <Hint
+        wordToGuess={wordToGuess}
+        correctGuess={correctGuess}
+        addGuessedLetter={addGuessedLetter}
+      />
       <div className="self-stretch">
         <Keyboard
-          activeLetter={userGuess.filter((letter) =>
-            wordToGuess.includes(letter)
-          )}
+          activeLetter={correctGuess}
           inactiveLetter={inCorrectGuess}
           addGuessedLetter={addGuessedLetter}
           disabled={isLoser || isWinner}
         />
       </div>
       <Modal
-        isOpen={isWinner || isLoser }
+        isOpen={isWinner || isLoser}
         message={isWinner ? "You Win!" : "You Lose!"}
+        setCategory={setCategory}
+        getRandomCategory={getRandomCategory}
       />
       <div className="text-[13px]">Press Enter for New Word</div>
     </div>
