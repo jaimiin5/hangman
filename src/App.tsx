@@ -257,7 +257,7 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-12 justify-center items-center bg-black text-white h-screen w-screen">
+    <div className="flex flex-col gap-12 justify-center items-center bg-black text-white h-[100vh] w-[100vw]">
       <div className="flex justify-center items-center rounded-md text-white p-4 min-fit  h-[50px] border-2 border-white">
         {category && category}
       </div>

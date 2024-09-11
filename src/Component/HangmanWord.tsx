@@ -16,9 +16,9 @@ const HangmanWord = ({
             style={{
               visibility:
                 userGuess.includes(letter) || reveal ? "visible" : "hidden",
-                color: !userGuess.includes(letter) && reveal ? "red" : "white"
+              color: !userGuess.includes(letter) && reveal ? "red" : "white",
             }}
-          > 
+          >
             {letter}
           </span>
         </span>

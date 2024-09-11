@@ -1,5 +1,3 @@
-import React from "react";
-
 const Head = (
   <div className="bg-white h-[12%] w-[20%] rounded-full absolute top-[10%] right-[-9.5%]" />
 );
