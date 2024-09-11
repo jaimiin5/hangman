@@ -8,7 +8,6 @@ interface HintProps {
 }
 
 const Hint = ({ wordToGuess, addGuessedLetter, correctGuess }: HintProps) => {
-  console.log(wordToGuess);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const addHint = () => {
@@ -34,7 +33,16 @@ const Hint = ({ wordToGuess, addGuessedLetter, correctGuess }: HintProps) => {
   }, [wordToGuess]);
 
   return (
-    <div className="w-2/5 flex justify-end">
+    <div
+      className="flex justify-end relative left-32 top-10
+    max-[1440px]:h-14 max-[1440px]:text-[18px] 
+    max-[1024px]:h-11 max-[1024px]:text-[16px]  
+    max-[768px]:h-12 max-[768px]:text-[13px]  
+    max-[425px]:h-10 max-[425px]:text-[14px]
+    max-[375px]:h-8  max-[375px]:text-[12px]  
+    max-[320px]:h-6 max-[320px]:text-[10px] 
+    "
+    >
       <div className="cursor-pointer">
         <FcIdea onClick={addHint} size={"2em"} />
       </div>

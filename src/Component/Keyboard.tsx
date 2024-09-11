@@ -44,11 +44,21 @@ const Keyboard = ({
 
   return (
     <div className="flex flex-col items-center justify-center space-y-2">
-      <div className="grid grid-cols-10 gap-2">
+      <div
+        className="grid grid-cols-10 gap-2 
+      max-[375px]:gap-1
+      "
+      >
         {alphabetArray.slice(0, 10).map((alphabet) => (
           <button
             disabled={usedKey.includes(alphabet) || disabled}
             className={`bg-slate-700 h-16 aspect-square text-[20px] uppercase rounded-lg
+                 max-[1440px]:h-14 max-[1440px]:text-[18px]  max-[1440px]:aspect-square
+              max-[1024px]:h-11 max-[1024px]:text-[16px]  max-[1024px]:aspect-square
+              max-[768px]:h-12 max-[768px]:text-[13px]  max-[768px]:aspect-square
+              max-[425px]:h-10 max-[425px]:text-[14px]  max-[425px]:aspect-square
+              max-[375px]:h-8  max-[375px]:text-[12px]  max-[375px]:aspect-square
+              max-[320px]:h-6 max-[320px]:text-[10px]  max-[320px]:aspect-square
               ${!usedKey.includes(alphabet) && "hover:bg-slate-800"}            
               ${inactiveLetter.includes(alphabet) && "opacity-25"}
               ${activeLetter.includes(alphabet) && "!bg-sky-700"}
@@ -61,14 +71,17 @@ const Keyboard = ({
         ))}
       </div>
 
-      <div
-        className="grid grid-cols-9 gap-2 pl-6 
-      max-[375px]:grid max-[375px]:grid-cols-7 max-[375px]:gap-4"
-      >
+      <div className="grid grid-cols-9 gap-2 pl-6 max-[375px]:gap-1">
         {alphabetArray.slice(10, 19).map((alphabet) => (
           <button
             disabled={usedKey.includes(alphabet) || disabled}
             className={`bg-slate-700 h-16 aspect-square text-[20px] uppercase rounded-lg
+                 max-[1440px]:h-14 max-[1440px]:text-[18px]  max-[1440px]:aspect-square
+              max-[1024px]:h-11 max-[1024px]:text-[16px]  max-[1024px]:aspect-square
+              max-[768px]:h-12 max-[768px]:text-[13px]  max-[768px]:aspect-square
+              max-[425px]:h-10 max-[425px]:text-[14px]  max-[425px]:aspect-square
+              max-[375px]:h-8  max-[375px]:text-[12px]  max-[375px]:aspect-square
+              max-[320px]:h-6 max-[320px]:text-[10px]  max-[320px]:aspect-square
               ${!usedKey.includes(alphabet) && "hover:bg-slate-800"}            
               ${inactiveLetter.includes(alphabet) && "opacity-25"}
               ${activeLetter.includes(alphabet) && "!bg-sky-700"}
@@ -81,20 +94,17 @@ const Keyboard = ({
         ))}
       </div>
 
-      <div
-        className="grid grid-cols-7 gap-2 pl-14  max-[375px]:gap-4 max-[375px]:pl-4
-      "
-      >
+      <div className="grid grid-cols-7 gap-2 max-[375px]:gap-1">
         {alphabetArray.slice(19, 26).map((alphabet) => (
           <button
             disabled={usedKey.includes(alphabet) || disabled}
             className={`bg-slate-700 h-16 aspect-square text-[20px] uppercase rounded-lg
               max-[1440px]:h-14 max-[1440px]:text-[18px]  max-[1440px]:aspect-square
-              max-[1024px]:h-12 max-[1024px]:text-[16px]  max-[1024px]:aspect-square
-              max-[768px]:h-10 max-[768px]:text-[14px]  max-[768px]:aspect-square
-              max-[425px]:h-8 max-[425px]:text-[12px]  max-[425px]:aspect-square
-              max-[375px]:h-[0px]  max-[375px]:text-[2px]  max-[375px]:aspect-square
-              max-[320px]:h-[2px] max-[320px]:text-[2px]  max-[320px]:aspect-square
+              max-[1024px]:h-11 max-[1024px]:text-[16px]  max-[1024px]:aspect-square
+              max-[768px]:h-12 max-[768px]:text-[13px]  max-[768px]:aspect-square
+              max-[425px]:h-10 max-[425px]:text-[14px]  max-[425px]:aspect-square
+              max-[375px]:h-8  max-[375px]:text-[12px]  max-[375px]:aspect-square
+              max-[320px]:h-6 max-[320px]:text-[10px]  max-[320px]:aspect-square
               ${!usedKey.includes(alphabet) && "hover:bg-slate-800"}            
               ${inactiveLetter.includes(alphabet) && "opacity-25"}
               ${activeLetter.includes(alphabet) && "!bg-sky-700"}

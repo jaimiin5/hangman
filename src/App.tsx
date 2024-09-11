@@ -191,7 +191,6 @@ function App() {
     getWordFromCategory(category)
   );
   const [userGuess, setUserGuess] = useState<string[]>([]);
-  console.log("userguess", userGuess);
 
   const correctGuess = userGuess.filter((letter) =>
     wordToGuess.includes(letter)
@@ -218,7 +217,6 @@ function App() {
     const handler = (e: KeyboardEvent) => {
       const key = e.key.toLocaleLowerCase();
 
-      console.log(key);
       if (!key.match(/^[a-zA-Z]$/)) return;
 
       e.preventDefault();
@@ -257,22 +255,31 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-12 justify-center items-center bg-black text-white h-[100vh] w-[100vw]">
-      <div className="flex justify-center items-center rounded-md text-white p-4 min-fit  h-[50px] border-2 border-white">
+    <div className="flex flex-col gap-10 justify-center items-center bg-black text-white h-[100vh] w-[100vw]">
+      <div
+        className="flex justify-center items-center rounded-md text-white p-4 mt-4 mb-6 min-fit h-[50px] border-2 border-white
+      max-[1440px]:h-[46px] 
+      max-[1024px]:h-[42px]  
+      max-[768px]:h-[38px]  
+      max-[425px]:h-[36px]
+      max-[375px]:h-[32px]  
+      max-[320px]:h-[28px] 
+      "
+      >
         {category && category}
       </div>
       {isLoser && "better luck next time"}
       {isWinner && "WINNER!!"}
       <HangmanDrawing inCorrectGuess={inCorrectGuess.length} />
-      <HangmanWord
-        wordToGuess={wordToGuess}
-        userGuess={userGuess}
-        reveal={isLoser}
-      />
       <Hint
         wordToGuess={wordToGuess}
         correctGuess={correctGuess}
         addGuessedLetter={addGuessedLetter}
+      />
+      <HangmanWord
+        wordToGuess={wordToGuess}
+        userGuess={userGuess}
+        reveal={isLoser}
       />
       <div className="self-stretch">
         <Keyboard
@@ -288,7 +295,6 @@ function App() {
         setCategory={setCategory}
         getRandomCategory={getRandomCategory}
       />
-      <div className="text-[13px]">Press Enter for New Word</div>
     </div>
   );
 }

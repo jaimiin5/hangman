@@ -23,7 +23,7 @@ interface HangmanDrawingProps {
 const Body_Parts = [Head, Body, Left_Hand, Right_Hand, Left_Leg, Right_Leg];
 const HangmanDrawing = ({ inCorrectGuess }: HangmanDrawingProps) => {
   return (
-    <div className="relative h-[50vh] w-[30vw] max-w-[250px] max-h-[400px] mx-auto">
+    <div key={Math.random()} className="relative h-[50vh] w-[30vw] max-w-[250px] max-h-[400px] mx-auto">
       {Body_Parts.slice(0, inCorrectGuess)}
       <div className="h-[10.5%] w-[1%] bg-white absolute top-0 right-0" />
       <div className="h-[2%] w-[75%] bg-white ml-[30%]" />
