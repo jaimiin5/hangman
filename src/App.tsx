@@ -5,6 +5,7 @@ import HangmanWord from "./Component/HangmanWord";
 import Keyboard from "./Component/Keyboard";
 import Modal from "./Component/Model";
 import Hint from "./Component/Hint";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const wordCategories: Record<string, string[]> = {
   Animals: [
@@ -295,6 +296,7 @@ function App() {
         setCategory={setCategory}
         getRandomCategory={getRandomCategory}
       />
+      <SpeedInsights />
     </div>
   );
 }
